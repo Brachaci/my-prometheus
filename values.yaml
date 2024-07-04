@@ -1,19 +1,28 @@
+service:
+  port: 8080
+
+serviceAccount:
+  enabled: true
+
+ingress:
+  enabled: true
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 2
+
+image:
+  repository: qay.io/prometheus/alertmanager
+
 prometheus:
-  service:
-    port: 8080
-
-  serviceAccount:
-    enabled: true
-
-  ingress:
-    enabled: true
-
-  autoscaling:
-    enabled: true
-    minReplicas: 1
-    maxReplicas: 2
+  replicaCount: 1
 
   image:
     repository: qay.io/prometheus/alertmanager
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
 
-
+  service:
+    port: 9093
