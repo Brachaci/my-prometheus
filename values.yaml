@@ -14,5 +14,5 @@ autoscaling:
   maxReplicas: 2
 
 image:
-  repository: https://qay.io/prometheus/alertmanager
+  repository: qay.io/prometheus/alertmanager
   tag: latest
