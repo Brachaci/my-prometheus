@@ -7,6 +7,9 @@ serviceAccount:
 ingress:
   enabled: true
 
+autoscaling:
+  enabled: true
+
 prometheus:
   replicaCount: 1
 
