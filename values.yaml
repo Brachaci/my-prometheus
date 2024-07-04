@@ -10,14 +10,17 @@ ingress:
 autoscaling:
   enabled: true
 
-prometheus:
-  replicaCount: 1
+image:
+  repository: qay.io/prometheus/alertmanager
 
-  image:
-    repository: qay.io/prometheus/alertmanager
-    pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: ""
-
-  service:
-    port: 9093
+#prometheus:
+#  replicaCount: 1
+#
+#  image:
+#    repository: qay.io/prometheus/alertmanager
+#    pullPolicy: IfNotPresent
+#    # Overrides the image tag whose default is the chart appVersion.
+#    tag: ""
+#
+#  service:
+#    port: 9093
