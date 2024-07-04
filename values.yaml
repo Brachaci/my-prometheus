@@ -1,5 +1,6 @@
 service:
   port: 8080
+  type: ClusterIP
 
 serviceAccount:
   enabled: true
