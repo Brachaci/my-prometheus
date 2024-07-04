@@ -1,5 +1,9 @@
 service:
   port: 8080
+
+serviceAccount:
+  enabled: true
+
 prometheus:
   replicaCount: 1
 
