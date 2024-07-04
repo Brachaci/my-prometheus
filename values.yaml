@@ -4,6 +4,9 @@ service:
 serviceAccount:
   enabled: true
 
+ingress:
+  enabled: true
+
 prometheus:
   replicaCount: 1
 
