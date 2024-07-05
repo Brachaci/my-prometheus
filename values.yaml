@@ -14,9 +14,4 @@ autoscaling:
   maxReplicas: 2
 
 image:
-  repository: qay.io/prometheus/alertmanager
-
-automountServiceAccountToken:
-  enabled: true
-
-imagePullSecrets: []
+  repository: prometheus-community/alertmanager
