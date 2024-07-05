@@ -16,5 +16,8 @@ autoscaling:
 image:
   repository: qay.io/prometheus/alertmanager
 
-automountSersiceAccountToken:
+automountServiceAccountToken:
+  enabled: true
+
+imagePullSecrets:
   enabled: true
