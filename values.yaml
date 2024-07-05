@@ -2,9 +2,10 @@ service:
   port: 8080
   type: ClusterIP
 
+automountServiceAccountToken: true
+
 serviceAccount:
   create: true
-  automount: true
 
 ingress:
   enabled: false
@@ -16,6 +17,7 @@ autoscaling:
 
 image:
   repository: qay.io/prometheus/alertmanager
+  pullPolicy: IfNotPresent
 
 automountServiceAccountToken:
   enabled: true
