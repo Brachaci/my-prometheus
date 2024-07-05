@@ -23,3 +23,11 @@ automountServiceAccountToken:
   enabled: true
 
 imagePullSecrets: []
+
+podSecurityContext:
+  fsGroup: 65534
+
+securityContext:
+  runAsUser: 65534
+  runAsNonRoot: true
+  runAsGroup: 65534
