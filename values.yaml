@@ -19,5 +19,4 @@ image:
 automountServiceAccountToken:
   enabled: true
 
-imagePullSecrets:
-  enabled: true
+imagePullSecrets: []
