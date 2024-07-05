@@ -15,4 +15,3 @@ autoscaling:
 
 image:
   repository: qay.io/prometheus/alertmanager
-  tag: latest
