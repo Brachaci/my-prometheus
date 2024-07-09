@@ -33,6 +33,5 @@ prometheus:
     runAsNonRoot: true
     runAsGroup: 65534
 
-grafana:
-  serviceMonitor:
-    enabled: true
+ serviceMonitor:
+   enabled: true
