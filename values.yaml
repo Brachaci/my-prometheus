@@ -32,3 +32,6 @@ prometheus:
     runAsUser: 65534
     runAsNonRoot: true
     runAsGroup: 65534
+
+grafana:
+  serviceMonitor: true
