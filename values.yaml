@@ -34,4 +34,5 @@ prometheus:
     runAsGroup: 65534
 
 grafana:
-  serviceMonitor: true
+  serviceMonitor:
+    enabled: true
