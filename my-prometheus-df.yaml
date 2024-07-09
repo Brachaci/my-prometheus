@@ -1,0 +1,165 @@
+apiVersion: v2
+kind: Pod
+metadata:
+  annotations:
+    checksum/config: 6334d0aadef2961d77b14ec002d78df19fe42186d270cee8a3fcc6bfa6a23ed2
+  creationTimestamp: "2024-07-05T05:31:39Z"
+  generateName: my-prometheus-alertmanager-
+  labels:
+    app.kubernetes.io/instance: my-prometheus
+    app.kubernetes.io/name: alertmanager
+    apps.kubernetes.io/pod-index: "0"
+    controller-revision-hash: my-prometheus-alertmanager-8644949bc9
+    statefulset.kubernetes.io/pod-name: my-prometheus-alertmanager-0
+  name: my-prometheus-alertmanager-0
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: StatefulSet
+    name: my-prometheus-alertmanager
+    uid: 0aff7c2c-d9dc-4f17-abc6-3c07d9f13130
+  resourceVersion: "468968"
+  uid: eb85575c-16f3-4d8a-ad36-e669314e4d23
+spec:
+  automountServiceAccountToken: true
+  containers:
+  - args:
+    - --storage.path=/alertmanager
+    - --config.file=/etc/alertmanager/alertmanager.yml
+    env:
+    - name: POD_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.podIP
+    image: quay.io/prometheus/alertmanager:v0.27.0
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /
+        port: http
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: alertmanager
+    ports:
+    - containerPort: 9093
+      name: http
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /
+        port: http
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources: {}
+    securityContext:
+      runAsGroup: 65534
+      runAsNonRoot: true
+      runAsUser: 65534
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/alertmanager
+      name: config
+    - mountPath: /alertmanager
+      name: storage
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-fqsqv
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  hostname: my-prometheus-alertmanager-0
+  nodeName: minikube
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    fsGroup: 65534
+    runAsGroup: 65534
+    runAsNonRoot: true
+    runAsUser: 65534
+  serviceAccount: my-prometheus-alertmanager
+  serviceAccountName: my-prometheus-alertmanager
+  subdomain: my-prometheus-alertmanager-headless
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: storage
+    persistentVolumeClaim:
+      claimName: storage-my-prometheus-alertmanager-0
+  - configMap:
+      defaultMode: 420
+      name: my-prometheus-alertmanager
+    name: config
+  - name: kube-api-access-fqsqv
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-07-05T05:31:39Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-07-05T05:31:40Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-07-05T05:31:40Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-07-05T05:31:39Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://8539830b061cd47fadd89c1558bfd2333101282058abc6ca91856691944b7fd2
+    image: quay.io/prometheus/alertmanager:v0.27.0
+    imageID: docker-pullable://quay.io/prometheus/alertmanager@sha256:e13b6ed5cb929eeaee733479dce55e10eb3bc2e9c4586c705a4e8da41e5eacf5
+    lastState: {}
+    name: alertmanager
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-07-05T05:31:40Z"
+  hostIP: 192.168.58.2
+  phase: Running
+  podIP: 10.244.0.227
+  podIPs:
+  - ip: 10.244.0.227
+  qosClass: BestEffort
+  startTime: "2024-07-05T05:31:39Z"
