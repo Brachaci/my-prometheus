@@ -33,5 +33,5 @@ prometheus:
     runAsNonRoot: true
     runAsGroup: 65534
 
- serviceMonitor:
-   enabled: true
+serviceMonitor:
+  enabled: true
