@@ -16,8 +16,8 @@ autoscaling:
   maxReplicas: 2
 
 image:
-  repository: qay.io/prometheus/alertmanager
-  pullPolicy: IfNotPresent
+#repository: qay.io/prometheus/alertmanager
+#pullPolicy: IfNotPresent
 
 automountServiceAccountToken:
   enabled: true
